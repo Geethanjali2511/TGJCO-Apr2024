@@ -1,8 +1,17 @@
+import java.util.Scanner;
+
 public class DiceRoller {
+
+
     public static void main(String[] args) {
-        // Placeholder for user input handling
-        String userInput = "2d6 + 3"; // Example input
-        DiceExpression expression = new DiceExpression(userInput);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a dice expression to roll..");
+        String diceExpression = scanner.nextLine();
+
+
+        DiceExpression expression = new DiceExpression(diceExpression);
         expression.evaluate();
+
+        scanner.close();
     }
 }
