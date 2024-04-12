@@ -8,9 +8,10 @@ public class DiceRoller {
         System.out.println("Enter a dice expression to roll..");
         String diceExpression = scanner.nextLine();
 
-
         DiceExpression expression = new DiceExpression(diceExpression);
         expression.evaluate();
+
+
 
         scanner.close();
     }

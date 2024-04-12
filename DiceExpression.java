@@ -20,11 +20,10 @@ public class DiceExpression {
 
             if (arrOfUserInput[j].contains("d")) {
                 String[] diceArray = arrOfUserInput[j].split("d");//2d4 //d3
-                if (diceArray[0].contains("")) {
+                if (diceArray[0].equals("")) {
                     int rolls = 1;
-                    int sides = Integer.parseInt(diceArray[1]);
-                    for (int i = 0; i < rolls; i++) {
-                        sum = DiceRoll.roll(sides);
+                    int sides = Integer.parseInt(diceArray[1]);for (int i = 0; i < rolls; i++) {
+                        sum += DiceRoll.roll(sides);
                     }
                     arrOfUserInput[j] = String.valueOf(sum);
 
@@ -32,7 +31,7 @@ public class DiceExpression {
                     int rolls = Integer.parseInt(diceArray[0]);
                     int sides = Integer.parseInt(diceArray[1]);
                     for (int i = 0; i < rolls; i++) {
-                        sum = DiceRoll.roll(sides);
+                        sum+= DiceRoll.roll(sides);
                     }
                     arrOfUserInput[j] = String.valueOf(sum);
 
@@ -60,12 +59,11 @@ public class DiceExpression {
 
     }
 
-    public boolean isValidExpression(String diceExpression) {
-
+    public static boolean isValidExpression(String diceExpression) {
         String[] parts = diceExpression.split("\\s*[+\\-*/]\\s*");
 
         for (String part : parts) {
-            Pattern pattern = Pattern.compile("(\\d+d\\d+)");
+            Pattern pattern = Pattern.compile("((\\d+d\\d+)|(d\\d+))(\\s*[+\\-*/]\\s*(\\d+))?");
             Matcher matcher = pattern.matcher(part);
 
             if (!matcher.matches()) {

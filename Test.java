@@ -1,10 +1,11 @@
-
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class DiceExpressionTest {
@@ -15,10 +16,10 @@ class DiceExpressionTest {
 
     void testMinMax(final String exp, int expectedMin, int expectedMax) {
         List<Integer> results= new ArrayList<>();
-        for (int i = 0 ; i < 100; i ++)
+        for (int i = 0 ; i < 1000; i ++)
             results.add(testExpr(exp));
-        assertEquals(expectedMin, results.stream().min(Integer::compare).get());
-        assertEquals(expectedMax, results.stream().max(Integer::compare).get());
+        assertEquals(expectedMin, Collections.min(results));
+        assertEquals(expectedMax, Collections.max(results));
     }
 
     @Test
@@ -29,5 +30,10 @@ class DiceExpressionTest {
     @Test
     void test_2d0_6() {
         testMinMax("2d6 + 10", 12, 24);
+    }
+
+    @Test
+    void testIsValidExpression(){
+        assertTrue(DiceExpression.isValidExpression("2d6 + 10"));
     }
 }
